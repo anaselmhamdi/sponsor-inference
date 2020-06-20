@@ -13,4 +13,4 @@ RUN apt install -y git
 RUN apt install -y wget
 RUN pip install -r requirements.txt
 EXPOSE 8080
-ENTRYPOINT uvicorn main:app --host 0.0.0.0 --port 8080
+# ENTRYPOINT uvicorn main:app --host 0.0.0.0 --port 8080
