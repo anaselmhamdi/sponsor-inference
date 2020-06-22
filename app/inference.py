@@ -68,7 +68,8 @@ def captionsToDf(file_path, chunk_seconds = 10):
         df2['label'] = df2.pred.map(lambda x: "sponsor" if x <= 0.5 else "content")
         df2['probability'] = df2.pred.map(lambda x: 1-x if x <= 0.5 else x )
         print(df2)
-        return df2.to_json('labeled_results.json')
+        df2.to_json('labeled_results.json')
+        return df2.to_dict(orient='records')
 
 def handler(sentence, url, model_path ='full-model.pt'):
     t = time.time()
@@ -87,8 +88,8 @@ def handler(sentence, url, model_path ='full-model.pt'):
         if url:
             fp = dlYt(url)
             if fp:
-                captionsToDf(fp)
                 print(f"Video downloading and labeling took {(time.time() - t):.3f}s")
+                return captionsToDf(fp)
             else:
                 return {"error":"no captions found"}
     except Exception as e:
