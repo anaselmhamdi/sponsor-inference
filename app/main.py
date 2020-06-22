@@ -4,9 +4,16 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-class Inference(BaseModel):
+class SentenceInference(BaseModel):
     sentence: str
 
-@app.post("/inference/")
-def get_inference(s : Inference):
-    return handler(s.sentence)
+class VideoInference(BaseModel):
+    youtube_url: str
+
+@app.post("/inference/sentence")
+def get_sentence_inference(s : SentenceInference):
+    return handler(s.sentence, None)
+
+@app.post("/inference/video_url")
+def get_video_inference(i : VideoInference):
+    return handler(None, i.youtube_url)
