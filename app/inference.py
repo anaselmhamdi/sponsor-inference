@@ -43,7 +43,9 @@ def dlYt(videoURL, file_name="subtitles"):
     videoID = videoURL.split("v=")[-1]
     subprocess.call(
             [
-                "youtube-dl", "--write-auto-sub", "--sub-lang", "en", "--skip-download","--ignore-errors", "-o",f"{file_name}.%(ext)s",
+                "youtube-dl", "--write-auto-sub", "--sub-lang", 
+                "en", "--skip-download","--ignore-errors", "-o",f"{file_name}.%(ext)s",
+                "--cookies", "cookies.txt",
                 f"https://www.youtube.com/watch?v={videoID}",
             ])
     b = os.path.isfile(file_name + '.en.vtt')
