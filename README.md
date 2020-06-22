@@ -43,7 +43,16 @@ Should print:
 
 ## Inference on a Youtube video
 
-`python3 app/inference.py -u "https://www.youtube.com/watch?v=MlOPPuNv4E"`  
+`python3 app/inference.py -u "https://www.youtube.com/watch?v=MlOPPuNv4Ec"`  
 
 Will download the video captions, and label it by 10s chunks.  
 The results will be written in the `labeled_results.json` file.  
+
+## Running a Fast API locally
+
+You can run this model for inference locally by running:  
+
+`cd app`  
+`uvicorn main:app`  
+
+You can see the routes at http://127.0.0.1:8000/docs

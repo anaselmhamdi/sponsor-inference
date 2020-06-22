@@ -10,7 +10,7 @@ ADD wget https://anas-models.s3.amazonaws.com/full-model.pt /deploy/
 WORKDIR /deploy/
 RUN apt update
 RUN apt install -y git
-RUN apt-install -y youtube-dl
+RUN apt install -y youtube-dl
 RUN pip install -r requirements.txt
 EXPOSE 8080
 ENTRYPOINT uvicorn main:app --port 8080
