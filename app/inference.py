@@ -7,12 +7,14 @@ import subprocess
 import pandas as pd
 import math
 import webvtt
+import gc
 from models import tokenizer, bertModel
 from datetime import datetime, timedelta
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def predict_sentiment(sentence):
+    gc.collect()
     init_token_idx = tokenizer.cls_token_id
     eos_token_idx = tokenizer.sep_token_id
     max_input_length = tokenizer.max_model_input_sizes['bert-base-cased']
