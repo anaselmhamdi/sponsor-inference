@@ -80,6 +80,7 @@ def handler(sentence, url, model_path ='full-model.pt'):
     try:                       
         bertModel.load_state_dict(torch.load(model_path,map_location='cpu'))
         bertModel.eval()
+        gc.collect()
         if sentence:
             pred = predict_sentiment(sentence)
             answer = {
